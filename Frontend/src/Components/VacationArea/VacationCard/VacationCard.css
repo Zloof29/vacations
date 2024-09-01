@@ -1,0 +1,107 @@
+.VacationCard {
+  width: 320px;
+  height: 450px;
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: #f9f9f9;
+  margin: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.VacationCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.VacationCard .image-container {
+  position: relative;
+}
+
+.VacationCard .image-container img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+}
+
+.VacationCard .like-button,
+.VacationCard .likes-count {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  /* border-radius: 50%; */
+  padding: 10px;
+  cursor: pointer;
+}
+
+.VacationCard .like-button {
+  top: 15px;
+  left: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.VacationCard .like-button:active {
+  background-color: red;
+}
+
+.VacationCard .likes-count {
+  height: 38.5px;
+  top: 15px;
+  left: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.VacationCard .vacation-destination {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.VacationCard > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.VacationCard .description {
+  overflow-y: auto;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.VacationCard > div:last-child {
+  margin-top: auto;
+  text-align: right;
+}
+
+.VacationCard .vacation-date {
+  font-size: 14px;
+  color: #555;
+  background-color: #e0f7fa;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.VacationCard .price {
+  background-color: lightblue;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,30 @@
+.Header {
+	height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+}
+
+.animation {
+    animation: fade .3s forwards;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.holder-animation {
+    animation: holder 4s;
+}

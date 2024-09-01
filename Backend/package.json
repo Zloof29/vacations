@@ -1,0 +1,33 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon --exec ts-node src/app.ts --quiet"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
+        "@types/express-fileupload": "^1.5.0",
+        "@types/jsonwebtoken": "^9.0.6",
+        "@types/node": "^20.14.2",
+        "nodemon": "^3.1.4",
+        "ts-node": "^10.9.2"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "express-fileupload": "^1.5.0",
+        "express-rate-limit": "^7.3.1",
+        "joi": "^17.13.3",
+        "joi-password-complexity": "^5.2.0",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.10.0",
+        "uploaded-file-saver": "^1.0.1"
+    }
+}
