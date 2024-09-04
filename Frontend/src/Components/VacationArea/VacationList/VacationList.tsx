@@ -1,4 +1,4 @@
-import { act, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./VacationList.css";
 import { VacationCard } from "../VacationCard/VacationCard";
 import { notify } from "../../../Utils/notify";
