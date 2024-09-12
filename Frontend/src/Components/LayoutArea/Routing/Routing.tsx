@@ -9,6 +9,7 @@ import { VacationList } from "../../VacationArea/VacationList/VacationList";
 import { AddVacation } from "../../VacationArea/addVacation/AddVacation";
 import { LikedVacation } from "../../VacationArea/LikedVacations/LikedVacation";
 import { ActiveVacations } from "../../VacationArea/ActiveVacations/ActiveVacations";
+import { InActiveVacations } from "../../VacationArea/InActiveVacations/InActiveVacations";
 
 export function Routing(): JSX.Element {
   return (
@@ -19,6 +20,7 @@ export function Routing(): JSX.Element {
         <Route path="/vacations" element={<VacationList />} />
         <Route path="/likedVacations" element={<LikedVacation />} />
         <Route path="/activeVacations" element={<ActiveVacations />} />
+        <Route path="/InActiveVacations" element={<InActiveVacations />} />
         <Route path="/about" element={<About />} />
         <Route path="/new-vacation" element={<AddVacation />} />
         <Route path="/register" element={<Register />} />

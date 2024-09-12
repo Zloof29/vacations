@@ -9,6 +9,7 @@ import { AppState, vacationActions } from "../../../Redux/store";
 import { vacationsService } from "../../../Services/VacationsService";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import usePagination from "../../../hooks/usePagination";
 
 export function VacationList(): JSX.Element {
   const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -38,6 +39,15 @@ export function VacationList(): JSX.Element {
     navigate("/activeVacations");
   };
 
+  const handleFilterInActiveVacations = () => {
+    navigate("/InActiveVacations");
+  };
+
+  const { pageNumber, pageCount, changePage, pageData } = usePagination(
+    vacations,
+    9
+  );
+
   return (
     <>
       <div>
@@ -48,11 +58,34 @@ export function VacationList(): JSX.Element {
         <button onClick={handleFilterActiveVacations} className="filterButton">
           Active vacations
         </button>
+
+        <button
+          onClick={handleFilterInActiveVacations}
+          className="filterButton"
+        >
+          InActive Vacations
+        </button>
       </div>
-      <div className="VacationList">
+
+      {/* <div className="VacationList">
         {vacations.map((v) => (
           <VacationCard key={v.id} vacation={v} />
         ))}
+      </div> */}
+
+      <div>
+        <ul>
+          {pageData().map((vacation: VacationModel) => (
+            <VacationCard key={vacation.id} vacation={vacation} />
+          ))}
+        </ul>
+        <div>
+          {Array.from({ length: pageCount }, (_, index) => (
+            <button key={index} onClick={() => changePage(index)}>
+              {index + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </>
   );

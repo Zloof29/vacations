@@ -1,27 +1,26 @@
+import { useEffect } from "react";
+import "./InActiveVacations.css";
+import { vacationsService } from "../../../Services/VacationsService";
 import { useSelector } from "react-redux";
-import "./ActiveVacations.css";
 import { AppState } from "../../../Redux/store";
 import { VacationModel } from "../../../Models/VacationModel";
 import { VacationCard } from "../VacationCard/VacationCard";
-import { vacationsService } from "../../../Services/VacationsService";
 
-export function ActiveVacations(): JSX.Element {
+export function InActiveVacations(): JSX.Element {
+  const userId = useSelector<AppState, number>((state) => state.user.id);
+
   const vacations = useSelector<AppState, VacationModel[]>((state) =>
     state.vacations.filter((v) => {
-      return (
-        new Date(v.startDate) <= new Date() && new Date(v.endDate) >= new Date()
-      );
+      return new Date(v.startDate) > new Date();
     })
   );
 
-  const userId = useSelector<AppState, number>((state) => state.user.id);
-
-  if (vacations) {
+  useEffect(() => {
     vacationsService.getAllVacationsByUserId(userId);
-  }
+  }, []);
 
   return (
-    <div className="ActiveVacations">
+    <div className="InActiveVacations">
       {vacations.map((v) => (
         <VacationCard key={v.id} vacation={v} />
       ))}
