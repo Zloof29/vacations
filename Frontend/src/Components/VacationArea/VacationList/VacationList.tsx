@@ -67,12 +67,6 @@ export function VacationList(): JSX.Element {
         </button>
       </div>
 
-      {/* <div className="VacationList">
-        {vacations.map((v) => (
-          <VacationCard key={v.id} vacation={v} />
-        ))}
-      </div> */}
-
       <div>
         <ul>
           {pageData().map((vacation: VacationModel) => (

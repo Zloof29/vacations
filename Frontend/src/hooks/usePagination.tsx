@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { VacationModel } from "../Models/VacationModel";
 
-function usePagination(items: any[], pageLimit: number) {
+function usePagination(vacations: VacationModel[], pageLimit: number) {
   const [pageNumber, setPageNumber] = useState(0);
-  const pageCount = Math.ceil(items.length / pageLimit);
+  const pageCount = Math.ceil(vacations.length / pageLimit);
 
-  const changePage = (pN: React.SetStateAction<number>) => {
-    setPageNumber(pN);
+  const changePage = (pageNumber: React.SetStateAction<number>) => {
+    setPageNumber(pageNumber);
   };
 
   const pageData = () => {
-    const s = pageNumber * pageLimit;
-    const e = s + pageLimit;
-    return items.slice(s, e);
+    const start = pageNumber * pageLimit;
+    const end = start + pageLimit;
+    return vacations.slice(start, end);
   };
 
   return { pageNumber, pageCount, changePage, pageData };
