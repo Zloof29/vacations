@@ -28,7 +28,9 @@ export function VacationList(): JSX.Element {
         const action = vacationActions.initVacations(vacations);
         dispatch(action);
       })
-      .catch((err) => notify.error(errorHandler.getError(err)));
+      .catch((err) => {
+        notify.error(errorHandler.getError(err));
+      });
   }, [userId, dispatch]);
 
   const handleFilterLikedButton = () => {
@@ -70,7 +72,7 @@ export function VacationList(): JSX.Element {
       <div>
         <ul>
           {pageData().map((vacation: VacationModel) => (
-            <VacationCard key={vacation.id} vacation={vacation} />
+            <VacationCard key={vacation.id} vacationId={vacation.id} />
           ))}
         </ul>
         <div>

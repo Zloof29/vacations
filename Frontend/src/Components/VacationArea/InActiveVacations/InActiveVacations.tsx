@@ -15,14 +15,14 @@ export function InActiveVacations(): JSX.Element {
     })
   );
 
-  useEffect(() => {
+  if (vacations) {
     vacationsService.getAllVacationsByUserId(userId);
-  }, []);
+  }
 
   return (
     <div className="InActiveVacations">
       {vacations.map((v) => (
-        <VacationCard key={v.id} vacation={v} />
+        <VacationCard key={v.id} vacationId={v.id} />
       ))}
     </div>
   );

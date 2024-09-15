@@ -18,7 +18,7 @@ export function likedVacations(
   currentState: VacationModel[],
   action: PayloadAction<VacationModel[]>
 ) {
-  const newState: VacationModel[] = action.payload; // Here, action.payload is all products to init.
+  const newState: VacationModel[] = action.payload;
   return newState;
 }
 

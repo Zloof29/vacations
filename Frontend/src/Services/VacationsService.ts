@@ -28,6 +28,8 @@ class VacationsService {
     const action = vacationActions.likedVacations(vacations);
     store.dispatch(action);
 
+    console.log(action);
+
     return vacations;
   }
 
@@ -51,14 +53,14 @@ class VacationsService {
   }
 
   public async addLikeToVacation(
-    like: LikeModel,
+    like: VacationModel,
     userId: number,
     vacationId: number
   ) {
     const options: AxiosRequestConfig = {
       headers: { "Content-Type": "multipart/form-data" },
     };
-    const response = await axios.post<LikeModel>(
+    const response = await axios.post<VacationModel>(
       `${appConfig.addLikeUrl}${userId}/${vacationId}`,
       like,
       options
@@ -66,10 +68,11 @@ class VacationsService {
 
     const addedLike = response.data;
 
-    const action = likeAction.likedVacation([addedLike]);
-    store.dispatch(action);
+    // const action = likeAction.likedVacation([addedLike]);
+    // store.dispatch(action);
 
-    console.log(action);
+    const action = vacationActions.likedVacations([addedLike]);
+    store.dispatch(action);
 
     return like;
   }

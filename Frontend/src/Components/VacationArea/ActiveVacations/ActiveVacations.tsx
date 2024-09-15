@@ -23,7 +23,7 @@ export function ActiveVacations(): JSX.Element {
   return (
     <div className="ActiveVacations">
       {vacations.map((v) => (
-        <VacationCard key={v.id} vacation={v} />
+        <VacationCard key={v.id} vacationId={v.id} />
       ))}
     </div>
   );
