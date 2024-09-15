@@ -7,6 +7,7 @@ import { vacationsService } from "../../../Services/VacationsService";
 import { notify } from "../../../Utils/notify";
 import { format } from "date-fns";
 import "./VacationCard.css";
+import { UserModel } from "../../../Models/UserModel";
 
 export function VacationCard({
   vacationId,
@@ -18,6 +19,10 @@ export function VacationCard({
   );
 
   const userId = useSelector<AppState, number>((state) => state.user.id);
+
+  const userInformation = useSelector<AppState, UserModel>(
+    (state) => state.user
+  );
 
   const [isLiked, setIsLiked] = useState<boolean>(vacation?.isLiked);
   const [likeCount, setLikeCount] = useState<number>(vacation?.likesCount || 0);
@@ -55,9 +60,16 @@ export function VacationCard({
       <div>
         <div className="image-container">
           <img src={vacation.imageUrl} />
-          <button className="like-button" onClick={handleLikeButton}>
-            ❤️ {vacation.isLiked ? "Unlike" : "Like"} {vacation.likesCount}
-          </button>
+          {userInformation.roleId === 1 ? (
+            <>
+              <button className="delete-button">Delete</button>
+              <button className="edit-button">Edit</button>
+            </>
+          ) : (
+            <button className="like-button" onClick={handleLikeButton}>
+              ❤️ {vacation.isLiked ? "Unlike" : "Like"} {vacation.likesCount}
+            </button>
+          )}
           <span className="vacation-destination">
             {vacation.vacationDestination}
           </span>
