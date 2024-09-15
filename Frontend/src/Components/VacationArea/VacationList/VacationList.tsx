@@ -10,11 +10,16 @@ import { vacationsService } from "../../../Services/VacationsService";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import usePagination from "../../../hooks/usePagination";
+import { UserModel } from "../../../Models/UserModel";
 
 export function VacationList(): JSX.Element {
   const [vacations, setVacations] = useState<VacationModel[]>([]);
 
   const userId = useSelector<AppState, number>((state) => state.user.id);
+
+  const userInformation = useSelector<AppState, UserModel>(
+    (state) => state.user
+  );
 
   const navigate = useNavigate();
 
@@ -53,9 +58,13 @@ export function VacationList(): JSX.Element {
   return (
     <>
       <div>
-        <button onClick={handleFilterLikedButton} className="filterButton">
-          Liked vacations
-        </button>
+        {userInformation.roleId === 1 ? (
+          <></>
+        ) : (
+          <button onClick={handleFilterLikedButton} className="filterButton">
+            Liked vacations
+          </button>
+        )}
 
         <button onClick={handleFilterActiveVacations} className="filterButton">
           Active vacations

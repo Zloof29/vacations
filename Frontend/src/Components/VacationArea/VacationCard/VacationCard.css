@@ -59,6 +59,39 @@
   color: white;
 }
 
+.VacationCard .delete-button,
+.VacationCard .edit-button {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  /* border-radius: 50%; */
+  padding: 10px;
+  cursor: pointer;
+}
+
+.VacationCard .delete-button {
+  top: 15px;
+  left: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.VacationCard .edit-button {
+  height: 36px;
+  top: 15px;
+  left: 75px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.VacationCard .delete-button:active {
+  background-color: red;
+}
+
+.VacationCard .edit-button:active {
+  background-color: red;
+}
+
 .VacationCard .vacation-destination {
   position: absolute;
   bottom: 15px;
