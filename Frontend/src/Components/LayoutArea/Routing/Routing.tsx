@@ -10,6 +10,7 @@ import { AddVacation } from "../../VacationArea/addVacation/AddVacation";
 import { LikedVacation } from "../../VacationArea/LikedVacations/LikedVacation";
 import { ActiveVacations } from "../../VacationArea/ActiveVacations/ActiveVacations";
 import { InActiveVacations } from "../../VacationArea/InActiveVacations/InActiveVacations";
+import { UpdateVacation } from "../../VacationArea/UpdateVacation/UpdateVacation";
 
 export function Routing(): JSX.Element {
   return (
@@ -23,6 +24,10 @@ export function Routing(): JSX.Element {
         <Route path="/InActiveVacations" element={<InActiveVacations />} />
         <Route path="/about" element={<About />} />
         <Route path="/new-vacation" element={<AddVacation />} />
+        <Route
+          path="/updateVacation/:vacationId"
+          element={<UpdateVacation />}
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Page404 />} />

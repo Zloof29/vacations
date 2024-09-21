@@ -32,6 +32,31 @@ export function addVacation(
   return newState;
 }
 
+export function updateVacation(
+  currentState: VacationModel[],
+  action: PayloadAction<VacationModel[]>
+) {
+  const stateMap = new Map(
+    currentState.map((vacation) => [vacation.id, vacation])
+  );
+
+  action.payload.forEach((vacation) => stateMap.set(vacation.id, vacation));
+
+  const newState: VacationModel[] = Array.from(stateMap.values());
+
+  return newState;
+}
+
+export function deletedVacation(
+  currentState: VacationModel[],
+  action: PayloadAction<VacationModel>
+) {
+  const newState = currentState.filter(
+    (vacation) => vacation.id !== action.payload.id
+  );
+  return newState;
+}
+
 export function initUser(
   currentState: UserModel,
   action: PayloadAction<UserModel>

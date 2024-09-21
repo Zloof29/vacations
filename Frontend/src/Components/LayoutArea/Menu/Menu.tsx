@@ -36,7 +36,7 @@ export function Menu(): JSX.Element {
       ) : (
         <NavLink to="/login">Vacations</NavLink>
       )}
-      {admin && <NavLink to="/new-vacation">Add Product</NavLink>}
+      {admin && <NavLink to="/new-vacation">Add Vacation</NavLink>}
       <NavLink to="/about">About</NavLink>
     </div>
   );

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/store";
 import { VacationModel } from "../../../Models/VacationModel";
 import { VacationCard } from "../VacationCard/VacationCard";
+import usePagination from "../../../hooks/usePagination";
 
 export function InActiveVacations(): JSX.Element {
   const userId = useSelector<AppState, number>((state) => state.user.id);
@@ -19,11 +20,25 @@ export function InActiveVacations(): JSX.Element {
     vacationsService.getAllVacationsByUserId(userId);
   }
 
+    const { pageNumber, pageCount, changePage, pageData } = usePagination(
+      vacations,
+      9
+    );
+
   return (
-    <div className="InActiveVacations">
-      {vacations.map((v) => (
-        <VacationCard key={v.id} vacationId={v.id} />
-      ))}
+    <div>
+      <ul>
+        {pageData().map((vacation: VacationModel) => (
+          <VacationCard key={vacation.id} vacationId={vacation.id} />
+        ))}
+      </ul>
+      <div>
+        {Array.from({ length: pageCount }, (_, index) => (
+          <button key={index} onClick={() => changePage(index)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

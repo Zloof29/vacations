@@ -19,7 +19,12 @@ class VacationController {
       this.getAllVacations
     );
     this.router.get(
-      "/vacations/:userId([0-9]+)",
+      "/vacation/:vacationId",
+      securityMiddleware.validateLogin,
+      this.getVacationsById
+    );
+    this.router.get(
+      "/vacations/user/:userId([0-9]+)",
       securityMiddleware.validateLogin,
       this.getAllVacationsByUserId
     );
@@ -48,7 +53,7 @@ class VacationController {
       this.addLikeToVacation
     );
     this.router.put(
-      "/vacations/:id([0-9]+)",
+      "/vacation/:vacationId([0-9]+)",
       securityMiddleware.validateAdmin,
       this.updateVacation
     );
@@ -74,6 +79,20 @@ class VacationController {
       response.json(vacations);
     } catch (err: any) {
       next(err); // Go to catchAll middleware!
+    }
+  }
+
+  private async getVacationsById(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    try {
+      const id = +request.params.vacationId;
+      const vacations = await vacationService.getVacationsById(id);
+      response.json(vacations);
+    } catch (err: any) {
+      next(err);
     }
   }
 

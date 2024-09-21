@@ -1,19 +1,27 @@
 import { errorHandler } from "../../../Utils/ErrorHandler";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../../../Redux/store";
+import {
+  AppState,
+  likeAction,
+  store,
+  vacationActions,
+} from "../../../Redux/store";
 import { VacationModel } from "../../../Models/VacationModel";
 import { vacationsService } from "../../../Services/VacationsService";
 import { notify } from "../../../Utils/notify";
 import { format } from "date-fns";
 import "./VacationCard.css";
 import { UserModel } from "../../../Models/UserModel";
+import { useNavigate } from "react-router-dom";
 
 export function VacationCard({
   vacationId,
 }: {
   vacationId: number;
 }): JSX.Element {
+  const navigate = useNavigate();
+
   const vacation = useSelector<AppState, VacationModel | undefined>((state) =>
     state.vacations.find((v) => v.id === vacationId)
   );
@@ -51,6 +59,26 @@ export function VacationCard({
     }
   };
 
+  const handleDeleteButton = async () => {
+    try {
+      await vacationsService.deleteVacation(vacation.id);
+      notify.success("Vacation has been removed.");
+
+      const actionVacation = vacationActions.deletedVacation(vacation);
+      store.dispatch(actionVacation);
+    } catch (error: any) {
+      notify.error(errorHandler.getError(error));
+    }
+  };
+
+  const handleEditButton = async () => {
+    try {
+      navigate(`/updateVacation/${vacationId}`);
+    } catch (error: any) {
+      notify.error(errorHandler.getError(error));
+    }
+  };
+
   if (!vacation) {
     return <div>Vacation not found</div>;
   }
@@ -62,8 +90,12 @@ export function VacationCard({
           <img src={vacation.imageUrl} />
           {userInformation.roleId === 1 ? (
             <>
-              <button className="delete-button">Delete</button>
-              <button className="edit-button">Edit</button>
+              <button className="delete-button" onClick={handleDeleteButton}>
+                Delete
+              </button>
+              <button className="edit-button" onClick={handleEditButton}>
+                Edit
+              </button>
             </>
           ) : (
             <button className="like-button" onClick={handleLikeButton}>

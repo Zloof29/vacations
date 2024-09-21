@@ -1,12 +1,14 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import {
   addVacation,
+  deletedVacation,
   deletedVacationLike,
   initUser,
   initVacations,
   likedVacation,
   likedVacations,
   logoutUser,
+  updateVacation,
 } from "./reducers";
 import { UserModel } from "../Models/UserModel";
 import { VacationModel } from "../Models/VacationModel";
@@ -23,7 +25,13 @@ export type AppState = {
 const vacationSlice = createSlice({
   name: "vacations", // Internal use
   initialState: [],
-  reducers: { initVacations, addVacation, likedVacations },
+  reducers: {
+    initVacations,
+    addVacation,
+    likedVacations,
+    updateVacation,
+    deletedVacation,
+  },
 });
 
 // Create user slice:
