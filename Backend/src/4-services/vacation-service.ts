@@ -7,6 +7,24 @@ import { LikeModel } from "../3-models/like-model";
 
 // Product service - any logic regarding products:
 class VacationService {
+  public async getVacationsById(id: number): Promise<VacationModel> {
+    const sql = `
+      SELECT
+        V.*, 
+        CONCAT('http://localhost:4000/api/vacations/images/', imageName) AS imageUrl, 
+        0 AS isLiked, 
+        (SELECT COUNT(*) FROM likes WHERE vacationId = V.id) AS likesCount 
+      FROM vacations as V 
+      WHERE V.id = ${id}
+      ORDER BY V.startDate
+      LIMIT 1
+    `;
+
+    const vacations = await dal.execute(sql);
+
+    return vacations[0];
+  }
+
   public async getAllVacations(): Promise<VacationModel[]> {
     const sql = `
       SELECT 
@@ -97,6 +115,11 @@ class VacationService {
 
   // Delete product:
   public async deleteVacation(id: number) {
+    //SQL:
+    const deleteLikes = "delete from likes where vacationId = ?";
+    //Execute:
+    await dal.execute(deleteLikes, [id]);
+
     // SQL:
     const sql = "delete from vacations where id = ?";
 

@@ -4,6 +4,7 @@ import { AppState } from "../../../Redux/store";
 import { VacationModel } from "../../../Models/VacationModel";
 import { VacationCard } from "../VacationCard/VacationCard";
 import { vacationsService } from "../../../Services/VacationsService";
+import usePagination from "../../../hooks/usePagination";
 
 export function ActiveVacations(): JSX.Element {
   const vacations = useSelector<AppState, VacationModel[]>((state) =>
@@ -20,11 +21,25 @@ export function ActiveVacations(): JSX.Element {
     vacationsService.getAllVacationsByUserId(userId);
   }
 
+  const { pageNumber, pageCount, changePage, pageData } = usePagination(
+    vacations,
+    9
+  );
+
   return (
-    <div className="ActiveVacations">
-      {vacations.map((v) => (
-        <VacationCard key={v.id} vacationId={v.id} />
-      ))}
+    <div>
+      <ul>
+        {pageData().map((vacation: VacationModel) => (
+          <VacationCard key={vacation.id} vacationId={vacation.id} />
+        ))}
+      </ul>
+      <div>
+        {Array.from({ length: pageCount }, (_, index) => (
+          <button key={index} onClick={() => changePage(index)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

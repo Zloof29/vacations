@@ -7,7 +7,7 @@ import { LikeModel } from "../Models/LikeModel";
 class VacationsService {
   public async getAllVacationsByUserId(userId: number) {
     const response = await axios.get<VacationModel[]>(
-      appConfig.vacationsUrl + userId
+      appConfig.vacationsByUserIdUrl + userId
     );
 
     const vacations = response.data;
@@ -16,6 +16,22 @@ class VacationsService {
     store.dispatch(action);
 
     return vacations;
+  }
+
+  public async getVacationById(vacationId: number) {
+    const response = await axios.get<VacationModel>(
+      appConfig.vacationUrl + vacationId
+    );
+
+    console.log(response.data);
+    
+
+    return response.data;
+
+    // const action = vacationActions.initVacations(vacations);
+    // store.dispatch(action);
+
+    // return vacation;
   }
 
   public async getAllVacationUserLiked(userId: number) {
@@ -52,6 +68,39 @@ class VacationsService {
     return vacation;
   }
 
+  public async updateVacation(vacationId: number) {
+    const options: AxiosRequestConfig = {
+      headers: { "Content-Type": "multipart/form-data" },
+    };
+
+    const response = await axios.put(
+      appConfig.vacationUrl + vacationId,
+      options
+    );
+
+    const updatedVacation = response.data;
+
+    const action = vacationActions.updateVacation(updatedVacation);
+
+    store.dispatch(action);
+
+    return updatedVacation;
+  }
+
+  public async deleteVacation(vacationId: number) {
+    const response = await axios.delete<void>(
+      appConfig.deleteVacationUrl + vacationId
+    );
+
+    if (response.status === 200) {
+      const action = vacationActions.deletedVacation();
+      store.dispatch(action);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public async addLikeToVacation(
     like: VacationModel,
     userId: number,
@@ -67,9 +116,6 @@ class VacationsService {
     );
 
     const addedLike = response.data;
-
-    // const action = likeAction.likedVacation([addedLike]);
-    // store.dispatch(action);
 
     const action = vacationActions.likedVacations([addedLike]);
     store.dispatch(action);
