@@ -38,17 +38,17 @@ export function VacationList(): JSX.Element {
       });
   }, [userId, dispatch]);
 
-  const handleFilterLikedButton = () => {
-    navigate("/likedVacations");
-  };
+  // const handleFilterLikedButton = () => {
+  //   navigate("/likedVacations");
+  // };
 
-  const handleFilterActiveVacations = () => {
-    navigate("/activeVacations");
-  };
+  // const handleFilterActiveVacations = () => {
+  //   navigate("/activeVacations");
+  // };
 
-  const handleFilterInActiveVacations = () => {
-    navigate("/InActiveVacations");
-  };
+  // const handleFilterInActiveVacations = () => {
+  //   navigate("/InActiveVacations");
+  // };
 
   const { pageNumber, pageCount, changePage, pageData } = usePagination(
     vacations,
@@ -57,7 +57,7 @@ export function VacationList(): JSX.Element {
 
   return (
     <>
-      <div>
+      {/* <div>
         {userInformation.roleId === 1 ? (
           <></>
         ) : (
@@ -76,7 +76,7 @@ export function VacationList(): JSX.Element {
         >
           InActive Vacations
         </button>
-      </div>
+      </div> */}
 
       <div>
         <ul>

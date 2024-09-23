@@ -1,19 +1,31 @@
 .Layout {
-	height: 100%;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-rows: 10% 85% 5%;
-    grid-template-columns: 20% 80%;
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 10% 10% 75% 5%; /* Added a new row for the menu */
+  grid-template-columns: 100%;
 }
 
-header, footer {
-    grid-column: span 2;
+header {
+  grid-column: span 2;
+}
+
+.menu {
+  grid-row: 2; /* Place the menu in the second row */
+  grid-column: span 2; /* Span the menu across both columns */
 }
 
 main {
-    overflow: auto;
+  grid-row: 3; /* Place the main content in the third row */
+  overflow: auto;
 }
 
-.Layout, .Layout > * {
-    border: 1px solid;
+footer {
+  grid-row: 4; /* Place the footer in the fourth row */
+  grid-column: span 2;
+}
+
+.Layout,
+.Layout > * {
+  border: 1px solid;
 }

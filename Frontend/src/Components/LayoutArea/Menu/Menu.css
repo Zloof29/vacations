@@ -1,13 +1,13 @@
 .Menu {
-	display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 20px;
+  gap: 30px;
 }
 
 .Menu .active {
-    color: green;
-    font-weight: bold;
-    font-family: Arial;
+  color: green;
+  font-weight: bold;
+  font-family: Arial;
 }
-
