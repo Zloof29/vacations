@@ -67,21 +67,22 @@ class VacationsService {
     return vacation;
   }
 
-  public async updateVacation(vacationId: number) {
+  public async updateVacation(vacation: VacationModel, vacationId: number) {
     const options: AxiosRequestConfig = {
       headers: { "Content-Type": "multipart/form-data" },
     };
 
     const response = await axios.put(
       appConfig.vacationUrl + vacationId,
+      vacation,
       options
     );
 
     const updatedVacation = response.data;
 
-    const action = vacationActions.updateVacation(updatedVacation);
+    // const action = vacationActions.updateVacation(updatedVacation);
 
-    store.dispatch(action);
+    // store.dispatch(action);
 
     return updatedVacation;
   }

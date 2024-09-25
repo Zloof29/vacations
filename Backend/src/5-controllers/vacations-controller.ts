@@ -53,7 +53,7 @@ class VacationController {
       this.addLikeToVacation
     );
     this.router.put(
-      "/vacation/:vacationId([0-9]+)",
+      "/vacation/:id([0-9]+)",
       securityMiddleware.validateAdmin,
       this.updateVacation
     );
@@ -147,6 +147,9 @@ class VacationController {
     next: NextFunction
   ) {
     try {
+      const vacationId = +request.params.id;
+      request.body.id = vacationId;
+      request.body.imageName = request.files?.imageName;
       const vacation = new VacationModel(request.body);
       const updatedVacation = await vacationService.updateVacation(vacation);
       response.json(updatedVacation);

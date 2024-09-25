@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { AppState, vacationActions } from "../../../Redux/store";
 import { vacationsService } from "../../../Services/VacationsService";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import usePagination from "../../../hooks/usePagination";
 import { UserModel } from "../../../Models/UserModel";
 
@@ -20,8 +19,6 @@ export function VacationList(): JSX.Element {
   const userInformation = useSelector<AppState, UserModel>(
     (state) => state.user
   );
-
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -38,18 +35,6 @@ export function VacationList(): JSX.Element {
       });
   }, [userId, dispatch]);
 
-  // const handleFilterLikedButton = () => {
-  //   navigate("/likedVacations");
-  // };
-
-  // const handleFilterActiveVacations = () => {
-  //   navigate("/activeVacations");
-  // };
-
-  // const handleFilterInActiveVacations = () => {
-  //   navigate("/InActiveVacations");
-  // };
-
   const { pageNumber, pageCount, changePage, pageData } = usePagination(
     vacations,
     9
@@ -57,27 +42,6 @@ export function VacationList(): JSX.Element {
 
   return (
     <>
-      {/* <div>
-        {userInformation.roleId === 1 ? (
-          <></>
-        ) : (
-          <button onClick={handleFilterLikedButton} className="filterButton">
-            Liked vacations
-          </button>
-        )}
-
-        <button onClick={handleFilterActiveVacations} className="filterButton">
-          Active vacations
-        </button>
-
-        <button
-          onClick={handleFilterInActiveVacations}
-          className="filterButton"
-        >
-          InActive Vacations
-        </button>
-      </div> */}
-
       <div>
         <ul>
           {pageData().map((vacation: VacationModel) => (
