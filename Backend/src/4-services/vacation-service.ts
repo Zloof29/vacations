@@ -91,7 +91,7 @@ class VacationService {
 
     // SQL:
     const sql =
-      "update vacations set vacationDestination = ?, description = ?, startDate = ?, endDate = ?, price = ?, imageName = ? where id = ?";
+      "UPDATE vacations SET vacationDestination = ?, description = ?, startDate = ?, endDate = ?, price = ?, imageName = ? WHERE id = ?";
 
     const values = [
       vacation.vacationDestination,

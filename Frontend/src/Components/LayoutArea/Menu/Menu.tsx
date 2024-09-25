@@ -30,14 +30,13 @@ export function Menu(): JSX.Element {
 
   return (
     <div className="Menu">
-      {/* <NavLink to="/home">Home</NavLink> */}
       {token && user ? (
         <NavLink to="/vacations">Vacations</NavLink>
       ) : (
         <NavLink to="/login">Vacations</NavLink>
       )}
 
-      {admin && <NavLink to="/new-vacation">Add Vacation</NavLink>}
+      {admin ? <NavLink to="/new-vacation">Add Vacation</NavLink> : <></>}
 
       {user && user.roleId === 2 ? (
         <>
@@ -51,7 +50,6 @@ export function Menu(): JSX.Element {
 
       {user && user.roleId === 1 ? (
         <>
-          {/* <NavLink to="/likedVacations">Liked vacations</NavLink> */}
           <NavLink to="/activeVacations">Active vacations</NavLink>
           <NavLink to="/InActiveVacations">Unactive vacations</NavLink>
         </>

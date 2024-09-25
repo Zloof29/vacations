@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import { vacationsService } from "../../../Services/VacationsService";
 import { useSelector } from "react-redux";
-import { AppState, vacationActions } from "../../../Redux/store";
+import { AppState } from "../../../Redux/store";
 import { VacationModel } from "../../../Models/VacationModel";
 import { VacationCard } from "../VacationCard/VacationCard";
 import usePagination from "../../../hooks/usePagination";

@@ -63,7 +63,6 @@ export function VacationCard({
     try {
       await vacationsService.deleteVacation(vacation.id);
       notify.success("Vacation has been removed.");
-
       const actionVacation = vacationActions.deletedVacation(vacation);
       store.dispatch(actionVacation);
     } catch (error: any) {
