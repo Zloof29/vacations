@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { userService } from "../../../Services/UserService";
 import { errorHandler } from "../../../Utils/ErrorHandler";
 import { notify } from "../../../Utils/notify";
+import { NavLink } from "react-router-dom";
 
 export function Login(): JSX.Element {
   const { register, handleSubmit } = useForm<CredentialsModel>();
@@ -31,6 +32,13 @@ export function Login(): JSX.Element {
         <input type="password" {...register("password")} />
 
         <button>Login</button>
+
+        <div>
+          don't have account?
+          <div>
+            <NavLink to={"/register"}>register now</NavLink>
+          </div>
+        </div>
       </form>
     </div>
   );

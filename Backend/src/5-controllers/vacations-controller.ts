@@ -149,7 +149,6 @@ class VacationController {
     try {
       const vacationId = +request.params.id;
       request.body.id = vacationId;
-      request.body.imageName = request.files?.imageName;
       const vacation = new VacationModel(request.body);
       const updatedVacation = await vacationService.updateVacation(vacation);
       response.json(updatedVacation);

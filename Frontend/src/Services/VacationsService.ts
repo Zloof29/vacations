@@ -80,10 +80,6 @@ class VacationsService {
 
     const updatedVacation = response.data;
 
-    // const action = vacationActions.updateVacation(updatedVacation);
-
-    // store.dispatch(action);
-
     return updatedVacation;
   }
 

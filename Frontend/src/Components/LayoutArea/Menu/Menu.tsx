@@ -56,8 +56,6 @@ export function Menu(): JSX.Element {
       ) : (
         <></>
       )}
-
-      <NavLink to="/about">About</NavLink>
     </div>
   );
 }
