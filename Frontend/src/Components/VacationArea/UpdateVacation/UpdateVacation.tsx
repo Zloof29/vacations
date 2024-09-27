@@ -22,7 +22,7 @@ export function UpdateVacation(): JSX.Element {
 
   async function send(vacation: VacationModel) {
     try {
-      // vacation.imageName = (vacation.imageName as unknown as FileList)[0];
+      vacation.imageName = (vacation.imageName as unknown as FileList)[0];
       await vacationsService.updateVacation(vacation, +vacationId);
       notify.success("Vacation has been updated.");
       navigate("/vacations");

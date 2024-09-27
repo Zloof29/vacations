@@ -89,6 +89,11 @@ class VacationService {
     // Validate:
     vacation.validateUpdateVacation();
 
+    // Save image to disk:
+    const imageName = vacation.imageName
+      ? await fileSaver.add(vacation.imageName)
+      : null;
+
     // SQL:
     const sql =
       "UPDATE vacations SET vacationDestination = ?, description = ?, startDate = ?, endDate = ?, price = ?, imageName = ? WHERE id = ?";
@@ -99,7 +104,7 @@ class VacationService {
       vacation.startDate,
       vacation.endDate,
       vacation.price,
-      vacation.imageName,
+      imageName,
       vacation.id,
     ];
 

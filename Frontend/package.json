@@ -4,6 +4,11 @@
   "private": true,
   "dependencies": {
     "@canvasjs/react-charts": "^1.0.2",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.1",
+    "@mui/styled-engine-sc": "^6.1.1",
+    "@mui/x-charts": "^7.18.0",
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -26,6 +31,7 @@
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "reselect": "^5.1.1",
+    "styled-components": "^6.1.13",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
