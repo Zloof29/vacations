@@ -13,10 +13,10 @@ export function Report(): JSX.Element {
     (state) => state.vacations
   );
 
-  const vacationNames: string[] = vacations.map(
+  const vacationDestination: string[] = vacations.map(
     (vacation) => vacation.vacationDestination
   );
-  const vacationCounts: number[] = vacations.map(
+  const vacationLikesCounts: number[] = vacations.map(
     (vacation) => vacation.likesCount
   );
 
@@ -29,18 +29,24 @@ export function Report(): JSX.Element {
       <BarChart
         xAxis={[
           {
-            id: "Vacation name",
-            data: vacationNames,
+            id: "Vacation destination",
+            data: vacationDestination,
             scaleType: "band",
-            disableTicks: false,
             tickInterval: `auto`,
             tickSize: 10,
             tickPlacement: "middle",
+            label: "Vacation Destination",
+          },
+        ]}
+        yAxis={[
+          {
+            id: "Likes Count",
+            label: "like count",
           },
         ]}
         series={[
           {
-            data: vacationCounts,
+            data: vacationLikesCounts,
             label: "Likes count",
           },
         ]}

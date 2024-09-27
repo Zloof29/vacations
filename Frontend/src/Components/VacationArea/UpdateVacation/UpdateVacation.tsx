@@ -16,9 +16,15 @@ export function UpdateVacation(): JSX.Element {
 
   const { vacationId } = useParams();
 
-  const [vacationData, setVacationData] = useState<VacationModel>(null);
-
   const userId = useSelector<AppState, number>((state) => state.user.id);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return "";
+    }
+    return date.toISOString().split("T")[0];
+  };
 
   async function send(vacation: VacationModel) {
     try {
@@ -37,12 +43,10 @@ export function UpdateVacation(): JSX.Element {
         +vacationId
       );
 
-      setVacationData(data);
-
       setValue("vacationDestination", data.vacationDestination);
       setValue("description", data.description);
-      setValue("startDate", data.startDate);
-      setValue("endDate", data.endDate);
+      setValue("startDate", formatDate(data.startDate));
+      setValue("endDate", formatDate(data.endDate));
       setValue("price", data.price);
       setValue("imageUrl", data.imageUrl);
     };
@@ -53,21 +57,52 @@ export function UpdateVacation(): JSX.Element {
     <div className="updateVacation">
       <form onSubmit={handleSubmit(send)}>
         <label>Vacation Destination: </label>
-        <input type="text" {...register("vacationDestination")} required />
+        <input
+          type="text"
+          {...register("vacationDestination")}
+          required
+          minLength={3}
+          maxLength={50}
+        />
 
-        <label>description: </label>
-        <textarea rows={10} cols={38} {...register("description")} required />
+        <label>Description: </label>
+        <textarea
+          rows={10}
+          cols={38}
+          {...register("description")}
+          required
+          minLength={5}
+          maxLength={1000}
+        />
 
-        <label>start Date: </label>
-        <input type="datetime-local" {...register("startDate")} required />
+        <label>Start date: </label>
+        <input
+          type="date"
+          {...register("startDate", {
+            setValueAs: (value) => formatDate(value),
+          })}
+          required
+        />
 
-        <label>end Date: </label>
-        <input type="datetime-local" {...register("endDate")} required />
+        <label>End date: </label>
+        <input
+          type="date"
+          {...register("endDate", {
+            setValueAs: (value) => formatDate(value),
+          })}
+          required
+        />
 
-        <label>price: </label>
-        <input type="number" {...register("price")} required />
+        <label>Price: </label>
+        <input
+          type="number"
+          {...register("price")}
+          required
+          min={0}
+          max={9999}
+        />
 
-        <label>image:</label>
+        <label>Image:</label>
         <input
           type="file"
           accept="image/*"
