@@ -52,6 +52,7 @@ export function Menu(): JSX.Element {
         <>
           <NavLink to="/activeVacations">Active vacations</NavLink>
           <NavLink to="/InActiveVacations">Unactive vacations</NavLink>
+          <NavLink to="/report">Reports</NavLink>
         </>
       ) : (
         <></>

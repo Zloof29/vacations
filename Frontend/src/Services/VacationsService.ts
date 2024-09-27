@@ -26,11 +26,6 @@ class VacationsService {
     console.log(response.data);
 
     return response.data;
-
-    // const action = vacationActions.initVacations(vacations);
-    // store.dispatch(action);
-
-    // return vacation;
   }
 
   public async getAllVacationUserLiked(userId: number) {
@@ -102,13 +97,9 @@ class VacationsService {
     userId: number,
     vacationId: number
   ) {
-    const options: AxiosRequestConfig = {
-      headers: { "Content-Type": "multipart/form-data" },
-    };
     const response = await axios.post<VacationModel>(
       `${appConfig.addLikeUrl}${userId}/${vacationId}`,
-      like,
-      options
+      like
     );
 
     const addedLike = response.data;
@@ -128,8 +119,6 @@ class VacationsService {
 
     const action = likeAction.deletedVacationLike(deletedVacationLike);
     store.dispatch(action);
-
-    console.log(action);
   }
 }
 
