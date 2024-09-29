@@ -56,7 +56,7 @@ export function UpdateVacation(): JSX.Element {
   return (
     <div className="updateVacation">
       <form onSubmit={handleSubmit(send)}>
-        <label>Vacation Destination: </label>
+        <label>Vacation destination: </label>
         <input
           type="text"
           {...register("vacationDestination")}
@@ -110,7 +110,7 @@ export function UpdateVacation(): JSX.Element {
           required
         />
 
-        <button>EDIT</button>
+        <button className="editButton">EDIT</button>
       </form>
     </div>
   );

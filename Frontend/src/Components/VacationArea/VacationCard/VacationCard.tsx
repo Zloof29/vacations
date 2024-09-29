@@ -1,12 +1,7 @@
 import { errorHandler } from "../../../Utils/ErrorHandler";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  AppState,
-  likeAction,
-  store,
-  vacationActions,
-} from "../../../Redux/store";
+import { AppState, store, vacationActions } from "../../../Redux/store";
 import { VacationModel } from "../../../Models/VacationModel";
 import { vacationsService } from "../../../Services/VacationsService";
 import { notify } from "../../../Utils/notify";
@@ -26,8 +21,6 @@ export function VacationCard({
     state.vacations.find((v) => v.id === vacationId)
   );
 
-  const userId = useSelector<AppState, number>((state) => state.user.id);
-
   const userInformation = useSelector<AppState, UserModel>(
     (state) => state.user
   );
@@ -36,25 +29,31 @@ export function VacationCard({
   const [likeCount, setLikeCount] = useState<number>(vacation?.likesCount || 0);
 
   useEffect(() => {
-    vacationsService.getAllVacationsByUserId(userId);
-  }, [userId, isLiked]);
+    vacationsService.getAllVacationsByUserId(userInformation.id);
+  }, [userInformation.id, isLiked]);
 
   const handleLikeButton = async () => {
     try {
-      if (isLiked) {
-        await vacationsService.deleteVacationLike(userId, vacationId);
-        setIsLiked(false);
-        setLikeCount(likeCount - 1);
-      } else {
-        await vacationsService.addLikeToVacation(
-          new VacationModel(),
-          userId,
-          vacationId
-        );
-        setIsLiked(true);
-        setLikeCount(likeCount + 1);
-      }
+      await vacationsService.deleteVacationLike(userInformation.id, vacationId);
+      setIsLiked(false);
+      setLikeCount(likeCount - 1);
+      notify.success("Like has been removed.");
     } catch (error) {
+      notify.error(errorHandler.getError(error));
+    }
+  };
+
+  const handleUnlikeButton = async () => {
+    try {
+      await vacationsService.addLikeToVacation(
+        new VacationModel(),
+        userInformation.id,
+        vacationId
+      );
+      setIsLiked(true);
+      setLikeCount(likeCount + 1);
+      notify.success("Like has been added.");
+    } catch (error: any) {
       notify.error(errorHandler.getError(error));
     }
   };
@@ -79,7 +78,7 @@ export function VacationCard({
   };
 
   if (!vacation) {
-    return <div>Vacation not found</div>;
+    return <></>;
   }
 
   return (
@@ -97,7 +96,10 @@ export function VacationCard({
               </button>
             </>
           ) : (
-            <button className="like-button" onClick={handleLikeButton}>
+            <button
+              className="like-button"
+              onClick={vacation.isLiked ? handleLikeButton : handleUnlikeButton}
+            >
               ❤️ {vacation.isLiked ? "Unlike" : "Like"} {vacation.likesCount}
             </button>
           )}

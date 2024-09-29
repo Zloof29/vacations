@@ -14,8 +14,6 @@ import { UserModel } from "../../../Models/UserModel";
 export function VacationList(): JSX.Element {
   const [vacations, setVacations] = useState<VacationModel[]>([]);
 
-  const userId = useSelector<AppState, number>((state) => state.user.id);
-
   const userInformation = useSelector<AppState, UserModel>(
     (state) => state.user
   );
@@ -24,7 +22,7 @@ export function VacationList(): JSX.Element {
 
   useEffect(() => {
     vacationsService
-      .getAllVacationsByUserId(userId)
+      .getAllVacationsByUserId(userInformation.id)
       .then((vacations) => {
         setVacations(vacations);
         const action = vacationActions.initVacations(vacations);
@@ -33,7 +31,7 @@ export function VacationList(): JSX.Element {
       .catch((err) => {
         notify.error(errorHandler.getError(err));
       });
-  }, [userId, dispatch]);
+  }, [userInformation.id, dispatch]);
 
   const { pageNumber, pageCount, changePage, pageData } = usePagination(
     vacations,
