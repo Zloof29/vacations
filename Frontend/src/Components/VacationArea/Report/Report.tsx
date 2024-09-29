@@ -13,10 +13,10 @@ export function Report(): JSX.Element {
     (state) => state.vacations
   );
 
-  const vacationDestination: string[] = vacations.map(
+  const vacationDestination = vacations.map(
     (vacation) => vacation.vacationDestination
   );
-  const vacationLikesCounts: number[] = vacations.map(
+  const vacationLikesCounts = vacations.map(
     (vacation) => vacation.likesCount
   );
 
@@ -42,6 +42,7 @@ export function Report(): JSX.Element {
           {
             id: "Likes Count",
             label: "like count",
+            tickNumber: 1,
           },
         ]}
         series={[

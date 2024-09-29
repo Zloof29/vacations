@@ -47,7 +47,7 @@ export function AddVacation(): JSX.Element {
           required
         />
 
-        <button>ADD</button>
+        <button className="addVacationButton">ADD</button>
       </form>
     </div>
   );

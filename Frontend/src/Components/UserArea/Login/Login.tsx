@@ -31,7 +31,7 @@ export function Login(): JSX.Element {
         <label>Password: </label>
         <input type="password" {...register("password")} />
 
-        <button>Login</button>
+        <button className="login">Login</button>
 
         <div>
           don't have account?

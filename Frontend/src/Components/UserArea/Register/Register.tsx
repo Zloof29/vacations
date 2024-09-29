@@ -36,7 +36,7 @@ export function Register(): JSX.Element {
         <label>Password: </label>
         <input type="password" {...register("password")} />
 
-        <button>Register</button>
+        <button className="register">Register</button>
 
         <div>
           already a member?
