@@ -8,7 +8,6 @@ import {
   likedVacation,
   likedVacations,
   logoutUser,
-  updateVacation,
 } from "./reducers";
 import { UserModel } from "../Models/UserModel";
 import { VacationModel } from "../Models/VacationModel";
@@ -29,7 +28,6 @@ const vacationSlice = createSlice({
     initVacations,
     addVacation,
     likedVacations,
-    updateVacation,
     deletedVacation,
   },
 });
