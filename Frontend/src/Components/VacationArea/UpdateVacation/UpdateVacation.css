@@ -1,3 +1,7 @@
 .editButton {
   background-color: lightblue;
 }
+
+.cancelButton {
+  background-color: red;
+}

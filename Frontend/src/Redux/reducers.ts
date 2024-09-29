@@ -32,21 +32,6 @@ export function addVacation(
   return newState;
 }
 
-export function updateVacation(
-  currentState: VacationModel[],
-  action: PayloadAction<VacationModel[]>
-) {
-  const stateMap = new Map(
-    currentState.map((vacation) => [vacation.id, vacation])
-  );
-
-  action.payload.forEach((vacation) => stateMap.set(vacation.id, vacation));
-
-  const newState: VacationModel[] = Array.from(stateMap.values());
-
-  return newState;
-}
-
 export function deletedVacation(
   currentState: VacationModel[],
   action: PayloadAction<VacationModel>

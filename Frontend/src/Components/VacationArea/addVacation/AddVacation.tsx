@@ -21,25 +21,29 @@ export function AddVacation(): JSX.Element {
     }
   }
 
+  function cancelEdit() {
+    navigate("/vacations");
+  }
+
   return (
     <div className="addVacation">
       <form onSubmit={handleSubmit(send)}>
         <label>Vacation Destination: </label>
         <input type="text" {...register("vacationDestination")} required />
 
-        <label>description: </label>
+        <label>Description: </label>
         <textarea rows={10} cols={38} {...register("description")} required />
 
-        <label>start Date: </label>
-        <input type="datetime-local" {...register("startDate")} required />
+        <label>Start Date: </label>
+        <input type="date" {...register("startDate")} required />
 
-        <label>end Date: </label>
-        <input type="datetime-local" {...register("endDate")} required />
+        <label>End Date: </label>
+        <input type="date" {...register("endDate")} required />
 
-        <label>price: </label>
+        <label>Price: </label>
         <input type="number" {...register("price")} required />
 
-        <label>image:</label>
+        <label>Image:</label>
         <input
           type="file"
           accept="image/*"
@@ -47,7 +51,10 @@ export function AddVacation(): JSX.Element {
           required
         />
 
-        <button className="addVacationButton">ADD</button>
+        <button className="addVacationButton">Add</button>
+        <button className="cancelButton" onClick={cancelEdit}>
+          Cancel
+        </button>
       </form>
     </div>
   );

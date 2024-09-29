@@ -32,7 +32,7 @@ export function VacationCard({
     vacationsService.getAllVacationsByUserId(userInformation.id);
   }, [userInformation.id, isLiked]);
 
-  const handleLikeButton = async () => {
+  const handleUnlikeButton = async () => {
     try {
       await vacationsService.deleteVacationLike(userInformation.id, vacationId);
       setIsLiked(false);
@@ -43,7 +43,7 @@ export function VacationCard({
     }
   };
 
-  const handleUnlikeButton = async () => {
+  const handleLikeButton = async () => {
     try {
       await vacationsService.addLikeToVacation(
         new VacationModel(),
@@ -98,9 +98,9 @@ export function VacationCard({
           ) : (
             <button
               className="like-button"
-              onClick={vacation.isLiked ? handleLikeButton : handleUnlikeButton}
+              onClick={isLiked ? handleUnlikeButton : handleLikeButton}
             >
-              ❤️ {vacation.isLiked ? "Unlike" : "Like"} {vacation.likesCount}
+              ❤️ {isLiked ? "Unlike" : "Like"} {likeCount}
             </button>
           )}
           <span className="vacation-destination">

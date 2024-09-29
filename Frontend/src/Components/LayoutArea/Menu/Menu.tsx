@@ -3,6 +3,8 @@ import "./Menu.css";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/store";
 import { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 export function Menu(): JSX.Element {
   const [token, setToken] = useState<string | null>(null);
@@ -30,33 +32,55 @@ export function Menu(): JSX.Element {
 
   return (
     <div className="Menu">
-      {token && user ? (
-        <NavLink to="/vacations">Vacations</NavLink>
-      ) : (
-        <NavLink to="/login">Vacations</NavLink>
-      )}
+      <Stack direction="row" spacing={2}>
+        {token && user ? (
+          <NavLink to="/vacations">
+            <Button>Vacations</Button>
+          </NavLink>
+        ) : (
+          <NavLink to="/login">Vacations</NavLink>
+        )}
 
-      {admin ? <NavLink to="/new-vacation">Add Vacation</NavLink> : <></>}
+        {admin ? (
+          <NavLink to="/new-vacation">
+            <Button>Add Vacation</Button>
+          </NavLink>
+        ) : (
+          <></>
+        )}
 
-      {user && user.roleId === 2 ? (
-        <>
-          <NavLink to="/likedVacations">Liked vacations</NavLink>
-          <NavLink to="/activeVacations">Active vacations</NavLink>
-          <NavLink to="/InActiveVacations">Unactive vacations</NavLink>
-        </>
-      ) : (
-        <></>
-      )}
+        {user && user.roleId === 2 ? (
+          <>
+            <NavLink to="/likedVacations">
+              <Button>Liked vacations</Button>
+            </NavLink>
+            <NavLink to="/activeVacations">
+              <Button>Active vacations</Button>
+            </NavLink>
+            <NavLink to="/InActiveVacations">
+              <Button>Unactive vacations</Button>
+            </NavLink>
+          </>
+        ) : (
+          <></>
+        )}
 
-      {user && user.roleId === 1 ? (
-        <>
-          <NavLink to="/activeVacations">Active vacations</NavLink>
-          <NavLink to="/InActiveVacations">Unactive vacations</NavLink>
-          <NavLink to="/report">Reports</NavLink>
-        </>
-      ) : (
-        <></>
-      )}
+        {user && user.roleId === 1 ? (
+          <>
+            <NavLink to="/activeVacations">
+              <Button>Active vacations</Button>
+            </NavLink>
+            <NavLink to="/InActiveVacations">
+              <Button>Unactive vacations</Button>
+            </NavLink>
+            <NavLink to="/report">
+              <Button>Reports</Button>
+            </NavLink>
+          </>
+        ) : (
+          <></>
+        )}
+      </Stack>
     </div>
   );
 }

@@ -37,6 +37,10 @@ export function UpdateVacation(): JSX.Element {
     }
   }
 
+  function cancelEdit() {
+    navigate("/vacations");
+  }
+
   useEffect(() => {
     const vacations = async () => {
       const data: VacationModel = await vacationsService.getVacationById(
@@ -110,7 +114,10 @@ export function UpdateVacation(): JSX.Element {
           required
         />
 
-        <button className="editButton">EDIT</button>
+        <button className="editButton">Edit</button>
+        <button className="cancelButton" onClick={cancelEdit}>
+          Cancel
+        </button>
       </form>
     </div>
   );
