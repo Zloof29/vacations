@@ -16,10 +16,7 @@ export function LikedVacation(): JSX.Element {
     vacationsService.getAllVacationsByUserId(userId);
   }
 
-  const { pageNumber, pageCount, changePage, pageData } = usePagination(
-    likedVacations,
-    9
-  );
+  const { pageCount, changePage, pageData } = usePagination(likedVacations, 9);
 
   return (
     <div>

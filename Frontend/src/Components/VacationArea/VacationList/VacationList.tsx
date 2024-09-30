@@ -33,10 +33,7 @@ export function VacationList(): JSX.Element {
       });
   }, [userInformation.id, dispatch]);
 
-  const { pageNumber, pageCount, changePage, pageData } = usePagination(
-    vacations,
-    9
-  );
+  const { pageCount, changePage, pageData } = usePagination(vacations, 9);
 
   return (
     <>

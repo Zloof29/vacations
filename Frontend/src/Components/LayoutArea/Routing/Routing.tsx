@@ -4,7 +4,7 @@ import { Page404 } from "../Page404/Page404";
 import { Register } from "../../UserArea/Register/Register";
 import { Login } from "../../UserArea/Login/Login";
 import { VacationList } from "../../VacationArea/VacationList/VacationList";
-import { AddVacation } from "../../VacationArea/addVacation/AddVacation";
+import { AddVacation } from "../../VacationArea/AddVacation/AddVacation";
 import { LikedVacation } from "../../VacationArea/LikedVacations/LikedVacation";
 import { ActiveVacations } from "../../VacationArea/ActiveVacations/ActiveVacations";
 import { InActiveVacations } from "../../VacationArea/InActiveVacations/InActiveVacations";

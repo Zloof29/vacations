@@ -21,10 +21,7 @@ export function ActiveVacations(): JSX.Element {
     vacationsService.getAllVacationsByUserId(userId);
   }
 
-  const { pageNumber, pageCount, changePage, pageData } = usePagination(
-    vacations,
-    9
-  );
+  const { pageCount, changePage, pageData } = usePagination(vacations, 9);
 
   return (
     <div>
