@@ -59,6 +59,13 @@ export function VacationCard({
   };
 
   const handleDeleteButton = async () => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this vacation?"
+    );
+    if (!isConfirmed) {
+      return;
+    }
+
     try {
       await vacationsService.deleteVacation(vacation.id);
       notify.success("Vacation has been removed.");
