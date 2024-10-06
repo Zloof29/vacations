@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Menu.css";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/store";
@@ -12,23 +12,11 @@ export function Menu(): JSX.Element {
   const admin = useSelector(
     (state: AppState) => state.user && state.user.roleId === 1
   );
-  const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     setToken(storedToken);
-  }, []);
-
-  useEffect(() => {
-    if (
-      !user &&
-      (location.pathname === "/vacations" ||
-        location.pathname === "/new-vacation")
-    ) {
-      navigate("/login");
-    }
-  }, [token, user, navigate, location.pathname]);
+  }, [token, user]);
 
   return (
     <div className="Menu">
@@ -38,7 +26,7 @@ export function Menu(): JSX.Element {
             <Button>Vacations</Button>
           </NavLink>
         ) : (
-          <NavLink to="/login">Vacations</NavLink>
+          <></>
         )}
 
         {admin ? (
@@ -49,7 +37,7 @@ export function Menu(): JSX.Element {
           <></>
         )}
 
-        {user && user.roleId === 2 ? (
+        {token && user && user.roleId === 2 ? (
           <>
             <NavLink to="/likedVacations">
               <Button>Liked vacations</Button>
@@ -65,7 +53,7 @@ export function Menu(): JSX.Element {
           <></>
         )}
 
-        {user && user.roleId === 1 ? (
+        {token && user && user.roleId === 1 ? (
           <>
             <NavLink to="/activeVacations">
               <Button>Active vacations</Button>

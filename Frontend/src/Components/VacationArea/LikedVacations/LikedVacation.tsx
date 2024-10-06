@@ -4,9 +4,15 @@ import { AppState } from "../../../Redux/store";
 import { VacationModel } from "../../../Models/VacationModel";
 import { VacationCard } from "../VacationCard/VacationCard";
 import usePagination from "../../../hooks/usePagination";
+import { UserModel } from "../../../Models/UserModel";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export function LikedVacation(): JSX.Element {
-  const userId = useSelector<AppState, number>((state) => state.user.id);
+  const navigate = useNavigate();
+  const userId = useSelector<AppState, number | null>((state) => state.user.id);
+
+  const user = useSelector<AppState, UserModel>((state) => state.user);
 
   const likedVacations = useSelector<AppState, VacationModel[]>((state) =>
     state.vacations.filter((v) => v.isLiked)
