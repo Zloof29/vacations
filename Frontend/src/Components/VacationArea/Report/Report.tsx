@@ -6,13 +6,22 @@ import { VacationModel } from "../../../Models/VacationModel";
 import { useEffect } from "react";
 import { vacationsService } from "../../../Services/VacationsService";
 import * as XLSX from "xlsx";
+import { useNavigate } from "react-router-dom";
+import { UserModel } from "../../../Models/UserModel";
 
 export function Report(): JSX.Element {
+  const navigate = useNavigate();
   const userId = useSelector<AppState, number>((state) => state.user.id);
+
+  const user = useSelector<AppState, UserModel>((state) => state.user);
 
   const vacations = useSelector<AppState, VacationModel[]>(
     (state) => state.vacations
   );
+
+  if (user.roleId === 2) {
+    navigate("/Page404");
+  }
 
   const vacationDestination = vacations.map(
     (vacation) => vacation.vacationDestination

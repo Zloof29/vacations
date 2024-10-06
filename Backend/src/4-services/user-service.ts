@@ -10,6 +10,16 @@ import { UnauthorizedError } from "../3-models/client-error";
 class UserService {
   // Register new user:
   public async register(user: UserModel) {
+    const emailCheckSql = "select count(*) as count from users where email = ?";
+
+    const emailCheckValues = [user.email];
+
+    const result = await dal.execute(emailCheckSql, emailCheckValues);
+
+    if (result[0].count > 0) {
+      throw new Error("Email already exist");
+    }
+
     // Validation...
     user.validateUser();
 
